@@ -1,0 +1,21 @@
+{
+  "name": "Vortex FF Store",
+  "short_name": "Vortex",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0a192f",
+  "theme_color": "#00ff9d",
+  "description": "Premium gaming services for Free Fire.",
+  "icons": [
+    {
+      "src": "assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

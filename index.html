@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Vortex FF Store - Game Panels, Accounts & Hacks</title>
+    <meta name="description" content="Your one-stop shop for Free Fire accounts, panels, and diamonds.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- FIX: Replaced broken imgur link with a placeholder. Update with your own icon. -->
+    <link rel="apple-touch-icon" href="assets/favicon-192.png" loading="lazy">
+ 
+	<link rel="icon" href="assets/favicon-32.png" type="image/png">
+
+    <!-- FIX: Replaced data-uri with a link to an external manifest.json file -->
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- 1. THEME & VARIABLE SETUP --- */
+        :root {
+            --font-family: 'Poppins', sans-serif; --transition-smooth: all 0.3s ease-in-out; --border-radius: 12px;
+        }
+        .dark-theme { --bg-primary: #0a192f; --bg-secondary: #112240; --text-primary: #ccd6f6; --text-secondary: #8892b0; --accent-primary: #00ff9d; --glow-color: rgba(0, 255, 157, 0.6); --shadow-color: rgba(2, 12, 27, 0.7); --gradient: linear-gradient(90deg, #00ff9d, #00f0ff); cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill: %2300ff9d;"><circle cx="10" cy="10" r="10" /></svg>') 10 10, auto; }
+        .light-theme { --bg-primary: #f0f2f5; --bg-secondary: #ffffff; --text-primary: #1c1e21; --text-secondary: #606770; --accent-primary: #1877f2; --glow-color: rgba(24, 119, 242, 0.4); --shadow-color: rgba(0, 0, 0, 0.1); --gradient: linear-gradient(90deg, #1877f2, #36a420); cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill: %231877f2;"><circle cx="10" cy="10" r="10" /></svg>') 10 10, auto;}
+        .cyber-theme { --bg-primary: #000000; --bg-secondary: #1a001a; --text-primary: #e0e0e0; --text-secondary: #a0a0a0; --accent-primary: #f000ff; --glow-color: rgba(240, 0, 255, 0.6); --shadow-color: rgba(0, 0, 0, 0.7); --gradient: linear-gradient(90deg, #f000ff, #00f0ff); cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill: %23f000ff;"><circle cx="10" cy="10" r="10" /></svg>') 10 10, auto;}
+        
+        /* --- 2. GENERAL STYLES & RESET --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.5s, color 0.5s; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+        .section { padding: 6rem 0; }
+        .section-title { text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; color: var(--accent-primary); text-shadow: 0 0 15px var(--glow-color); }
+        section[data-aos] { transition: transform 0.8s ease, opacity 0.8s ease; }
+        
+        /* --- 3. HEADER & NAVIGATION --- */
+        .header { position: sticky; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; transition: background-color 0.5s, backdrop-filter 0.5s, border-bottom 0.5s, box-shadow 0.5s; }
+        .header.scrolled { background-color: rgba(10, 25, 47, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(136, 146, 176, 0.2); box-shadow: 0 0 20px var(--glow-color); }
+        .light-theme .header.scrolled { background-color: rgba(255, 255, 255, 0.8); }
+        .cyber-theme .header.scrolled { background-color: rgba(26, 0, 26, 0.7); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent-primary); }
+        .nav-menu { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger .line { width: 25px; height: 3px; background-color: var(--text-primary); border-radius: 3px; }
+
+        /* --- 4. THEME SWITCHER --- */
+        .theme-switcher { display: flex; gap: 0.5rem; background: var(--bg-primary); padding: 0.3rem; border-radius: var(--border-radius); border: 1px solid var(--bg-secondary); }
+        .theme-btn { background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0.3rem; border-radius: 8px; transition: var(--transition-smooth); }
+        .theme-btn.active { background: var(--bg-secondary); color: var(--accent-primary); box-shadow: 0 0 10px var(--glow-color); }
+
+        /* --- 5. HERO & CTA --- */
+        .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 2rem; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60vw; height: 60vw; max-width: 800px; background: var(--gradient); filter: blur(100px); border-radius: 50%; z-index: 0; opacity: 0.3; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; margin-bottom: 1rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px var(--glow-color); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; }
+        .cta-button { background: var(--accent-primary); color: var(--bg-primary); padding: 1rem 2.5rem; text-decoration: none; border-radius: var(--border-radius); font-weight: 700; border: 2px solid transparent; animation: pulse-glow 3s infinite; transition: var(--transition-smooth); }
+        .cta-button:hover { transform: scale(1.05); filter: brightness(1.2); }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 15px var(--glow-color); } 50% { box-shadow: 0 0 35px var(--glow-color); } 100% { box-shadow: 0 0 15px var(--glow-color); } }
+
+        /* --- 6. FEATURES, PROFILE & CONTACT --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--bg-secondary); padding: 2.5rem 2rem; border-radius: var(--border-radius); text-align: center; border: 1px solid transparent; }
+        .profile-container { background: var(--bg-secondary); padding: 4rem; border-radius: var(--border-radius); box-shadow: 0 5px 25px var(--shadow-color); }
+        .profile-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-left: 1rem;}
+        .profile-header-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent-primary); object-fit: cover; }
+        .profile-header-name { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
+        .profile-grid { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: flex-start; }
+        .profile-avatar { text-align: center; }
+        .profile-avatar img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent-primary); object-fit: cover; box-shadow: 0 0 20px var(--glow-color); cursor: pointer; }
+        .profile-form .form-group { margin-bottom: 1.5rem; }
+        .profile-form label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 600; }
+        .profile-form input, .profile-form select { width: 100%; padding: 0.8rem 1rem; background: var(--bg-primary); border: 1px solid var(--bg-secondary); border-radius: 8px; color: var(--text-primary); font-size: 1rem; }
+        .form-button { background: var(--accent-primary); color: var(--bg-primary); padding: 0.8rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; position: relative; }
+        .spinner { display: none; border: 4px solid rgba(0, 0, 0, 0.1); width: 20px; height: 20px; border-radius: 50%; border-left-color: var(--bg-primary); animation: spin 1s ease infinite; margin-left: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .contact-info a { color: var(--accent-primary); text-decoration: none; font-size: 1.4rem; margin: 0 1.5rem; transition: var(--transition-smooth); display: inline-block; }
+        .contact-info a:hover { transform: translateY(-5px); text-shadow: 0 0 10px var(--glow-color); }
+        .footer { background: var(--bg-secondary); text-align: center; padding: 2.5rem 0; margin-top: 4rem; }
+        
+        /* --- 7. LIVE CHAT & FAB --- */
+        .chat-box { position: fixed; bottom: 20px; right: 20px; width: 350px; max-width: 90vw; background: var(--bg-secondary); border: 1px solid var(--accent-primary); border-radius: var(--border-radius); box-shadow: 0 5px 25px var(--shadow-color); display: flex; flex-direction: column; overflow: hidden; z-index: 1009; opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }
+        .chat-box.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        .chat-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-primary); font-weight: 700; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); }
+        .chat-close-btn { background: none; border: none; color: var(--text-secondary); font-size: 1.2rem; cursor: pointer; }
+        .chat-messages { flex-grow: 1; padding: 1rem; height: 300px; overflow-y: auto; }
+        .chat-msg-wrapper { display: flex; flex-direction: column; margin-bottom: 1rem; max-width: 85%; }
+        .chat-msg { padding: 0.6rem 1rem; border-radius: var(--border-radius); word-break: break-word; }
+        .chat-msg-wrapper.user { align-items: flex-end; margin-left: auto; }
+        .chat-msg-wrapper.other { align-items: flex-start; margin-right: auto; }
+        .chat-msg-wrapper.user .chat-msg { background-color: var(--accent-primary); color: var(--bg-primary); }
+        .chat-msg-wrapper.other .chat-msg { background-color: var(--bg-primary); }
+        .msg-meta { font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px; padding: 0 5px; }
+        .chat-input-area { display: flex; border-top: 1px solid var(--accent-primary); }
+        .chat-input-area input { flex-grow: 1; border: none; background: var(--bg-secondary); color: var(--text-primary); padding: 1rem; outline: none; }
+        .chat-input-area button { background: var(--accent-primary); border: none; color: var(--bg-primary); padding: 0 1.5rem; cursor: pointer; font-weight: 600; }
+        
+        /* ✅ Floating Action Button (FAB) for Live Chat */
+        .fab-chat-button { position: fixed; bottom: 20px; right: 20px; z-index: 1010; width: 60px; height: 60px; background: var(--gradient); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; color: var(--bg-primary); cursor: pointer; box-shadow: 0 0 20px var(--glow-color); transition: transform 0.3s ease; }
+        .fab-chat-button:hover { transform: scale(1.1); }
+        .fab-chat-button.hidden { transform: scale(0); opacity: 0; }
+
+        /* --- 8. RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .header { padding: 0.8rem 0; } .section { padding: 4rem 0; }
+            .nav-menu { position: fixed; top: 65px; right: -100%; width: 100%; height: calc(100vh - 65px); flex-direction: column; background-color: var(--bg-secondary); justify-content: flex-start; padding-top: 3rem; transition: right 0.4s ease-in-out; }
+            .nav-menu.active { right: 0; } .hamburger { display: flex; }
+            .nav-links { flex-direction: column; gap: 3rem; text-align: center; }
+            .profile-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-header { justify-content: center; }
+            .profile-container { padding: 2rem; }
+            .chat-box { right: 10px; bottom: 10px; width: calc(100vw - 20px); }
+            .fab-chat-button { bottom: 15px; right: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container navbar">
+            <a href="#home" class="logo">VORTEX<span>FF</span></a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="dark-theme" title="Dark Theme">🌙</button>
+                    <button class="theme-btn" data-theme="light-theme" title="Light Theme">☀️</button>
+                    <button class="theme-btn" data-theme="cyber-theme" title="Cyber Theme">👾</button>
+                </div>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero" data-aos="fade-in">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+                <h1>Welcome to Vortex FF Store</h1>
+                <p>Buy premium Free Fire Game Panels, Top-ups, and Accounts with instant delivery via JazzCash/Easypaisa.</p>
+                <a class="cta-button" href="#products">Explore Products</a>
+            </div>
+        </section>
+
+        <section id="products" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Our Top Products</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><h3>FF Panel Pro</h3><p>Unlock advanced features with our flagship Free Fire panel, including auto headshot and aimbot.</p></div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><h3>Diamond Top-Up</h3><p>Get unlimited diamonds safely and securely with our instant top-up service. Updated daily.</p></div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><h3>VIP Accounts</h3><p>Purchase high-level, rare, and OG accounts for Free Fire. 100% secure transfer.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="profile" class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">My Profile</h2>
+                <div class="profile-container" data-aos="zoom-in-up">
+                    <div class="profile-header">
+                        <!-- FIX: Replaced broken imgur link with a placeholder. Update with your own image. -->
+                        <img src="assets/avatar.png" id="profile-header-avatar" class="profile-header-avatar" alt="Current Avatar" loading="lazy">
+                        <span id="profile-header-name">Guest User</span>
+                    </div>
+                    <div class="profile-grid">
+                        <div class="profile-avatar">
+                            <!-- FIX: Replaced broken imgur link with a placeholder. Update with your own image. -->
+                            <img src="assets/avatar.png" id="avatar-preview" alt="Guest Avatar" loading="lazy" title="Click to change avatar">
+                            <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                        </div>
+                        <form class="profile-form" id="profile-form">
+                            <div class="form-group"><label for="nickname">Nickname</label><input type="text" id="nickname" placeholder="Your in-game name"></div>
+                            <div class="form-group"><label for="uid">Game UID</label><input type="text" id="uid" placeholder="Your Free Fire UID"></div>
+                            <div class="form-group"><label for="region">Region</label><select id="region"><option value="PK">Pakistan</option><option value="IN">India</option><option value="BD">Bangladesh</option><option value="Other">Other</option></select></div>
+                            <div class="form-group"><label for="favorite-product">Favorite Product</label><select id="favorite-product"><option value="FF Panel Pro">FF Panel Pro</option><option value="Diamond Top-Up">Diamond Top-Up</option><option value="VIP Account">VIP Account</option></select></div>
+                            <button type="submit" class="form-button" id="save-profile-btn">Save Profile <div class="spinner" id="spinner"></div></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-info" style="text-align: center;">
+                    <a id="whatsapp-link" href="https://wa.me/923105303184" target="_blank" title="WhatsApp">📞 WhatsApp</a>
+                    <a id="instagram-link" href="https://www.instagram.com/_raja.moin_?igsh=MTQwbDR4d2VzZnM3dQ==" target="_blank" title="Instagram - DM us for assistance!">📸 Instagram</a>
+                    <a id="email-link" href="mailto:resellerop65@gmail.com" target="_blank" title="Email">✉️ Email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Vortex FF Store. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Live Chat Box (Initially Hidden) -->
+    <div class="chat-box" id="live-chat-box">
+        <div class="chat-header">
+            <span>Live Global Chat</span>
+            <button id="chat-close-btn" class="chat-close-btn" title="Close Chat">✖</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="send-chat-btn">Send</button>
+        </div>
+    </div>
+    
+    <!-- Floating Action Button for Live Chat -->
+    <div class="fab-chat-button" id="fab-chat-button" title="Open Live Chat">
+        💬
+    </div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+        import { getDatabase, ref, push, onChildAdded, serverTimestamp, query, limitToLast } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            let firestoreDB, realtimeDB, storage;
+            const guestId = localStorage.getItem('vortexGuestId') || `User_${Math.floor(1000 + Math.random() * 9000)}`;
+            localStorage.setItem('vortexGuestId', guestId);
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBApESbH9Wen96lbtgv04fT66UheSa3NhU",
+                authDomain: "vortexff-1c155.firebaseapp.com",
+                databaseURL: "https://vortexff-1c155-default-rtdb.firebaseio.com",
+                projectId: "vortexff-1c155",
+                storageBucket: "vortexff-1c155.appspot.com",
+                messagingSenderId: "563443297086",
+                appId: "1:563443297086:web:001ee88bfbe06b33fe1a6f"
+            };
+            try {
+                const app = initializeApp(firebaseConfig);
+                firestoreDB = getFirestore(app);
+                realtimeDB = getDatabase(app);
+                storage = getStorage(app);
+                setupLiveChat(realtimeDB);
+                setupProfileSystem(firestoreDB, storage);
+            } catch (e) {
+                console.error("Firebase initialization failed:", e);
+                alert("Could not connect to services. Please check your connection.");
+            }
+
+            AOS.init({ duration: 800, once: true, offset: 100 });
+            setupThemeSwitcher();
+            setupHamburgerMenu();
+            setupHeaderScrollEffect();
+            
+            function setupThemeSwitcher() {
+                const themeButtons = document.querySelectorAll('.theme-btn');
+                const htmlEl = document.documentElement;
+                const applyTheme = (theme) => {
+                    if (!theme) return;
+                    htmlEl.className = theme;
+                    localStorage.setItem('vortex-theme', theme);
+                    themeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.theme === theme));
+                };
+                themeButtons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.theme)));
+                applyTheme(localStorage.getItem('vortex-theme') || 'dark-theme');
+            }
+
+            function setupHamburgerMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            }
+            
+            function setupHeaderScrollEffect() {
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                });
+            }
+
+            function setupLiveChat(db) {
+                const chatBox = document.getElementById('live-chat-box');
+                const fabButton = document.getElementById('fab-chat-button');
+                const closeBtn = document.getElementById('chat-close-btn');
+                const messagesEl = document.getElementById('chat-messages');
+                const inputEl = document.getElementById('chat-input');
+                const sendBtn = document.getElementById('send-chat-btn');
+                
+                const toggleChat = (isOpen) => {
+                    if(isOpen) {
+                        chatBox.classList.add('active');
+                        fabButton.classList.add('hidden');
+                        sessionStorage.setItem('vortex-chat-open', 'true');
+                    } else {
+                        chatBox.classList.remove('active');
+                        fabButton.classList.remove('hidden');
+                        sessionStorage.setItem('vortex-chat-open', 'false');
+                    }
+                };
+
+                fabButton.addEventListener('click', () => toggleChat(true));
+                closeBtn.addEventListener('click', () => toggleChat(false));
+
+                if (sessionStorage.getItem('vortex-chat-open') === 'true') {
+                    toggleChat(true);
+                }
+
+                let lastMsgTime = 0;
+                const badWords = /\b(fuck|noob|shit|bitch|idiot|asshole|cunt)\b/gi;
+                const clean = (msg) => msg.replace(badWords, '***');
+                
+                function sendChatMessage() {
+                    if (Date.now() - lastMsgTime < 3000) { alert("Please wait before sending another message."); return; }
+                    const messageText = inputEl.value.trim();
+                    if (messageText === '') return;
+                    
+                    push(ref(db, 'messages'), { guest: guestId, text: clean(messageText), timestamp: serverTimestamp() });
+                    lastMsgTime = Date.now();
+                    inputEl.value = '';
+                }
+                
+                const messagesRef = query(ref(db, 'messages'), limitToLast(50));
+                onChildAdded(messagesRef, (snapshot) => {
+                    const msg = snapshot.val();
+                    const time = msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'sending...';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = `chat-msg-wrapper ${msg.guest === guestId ? 'user' : 'other'}`;
+                    wrapper.innerHTML = `<div class="chat-msg">${msg.text}</div><div class="msg-meta">${msg.guest} • ${time}</div>`;
+                    messagesEl.appendChild(wrapper);
+                    messagesEl.scrollTop = messagesEl.scrollHeight;
+                });
+
+                sendBtn.addEventListener('click', sendChatMessage);
+                inputEl.addEventListener('keypress', (e) => e.key === 'Enter' && sendChatMessage());
+            }
+
+            function setupProfileSystem(db, storage) {
+                const form = document.getElementById('profile-form');
+                const nicknameEl = document.getElementById('nickname');
+                const uidEl = document.getElementById('uid');
+                const regionEl = document.getElementById('region');
+                const favoriteEl = document.getElementById('favorite-product');
+                const avatarPreview = document.getElementById('avatar-preview');
+                const avatarUpload = document.getElementById('avatar-upload');
+                const profileHeaderAvatar = document.getElementById('profile-header-avatar');
+                const profileHeaderName = document.getElementById('profile-header-name');
+                const saveBtn = document.getElementById('save-profile-btn');
+                const spinner = document.getElementById('spinner');
+
+                avatarPreview.addEventListener('click', () => avatarUpload.click());
+
+                const updateDynamicContent = (data) => {
+                    // FIX: Use placeholder if photoURL is missing/broken.
+                    profileHeaderAvatar.src = data.photoURL || 'assets/avatar.png';
+                    profileHeaderName.textContent = data.nickname || "Guest User";
+
+                    const uid = data.uid || "____";
+                    const nickname = data.nickname || "____";
+
+                    const whatsappMsg = encodeURIComponent(`Hello Vortex FF Store, I want help with Free Fire top-ups or my profile. My UID is ${uid}.`);
+                    document.getElementById('whatsapp-link').href = `https://wa.me/923105303184?text=${whatsappMsg}`;
+                    
+                    const emailSubject = encodeURIComponent(`Support Request - Vortex FF Store`);
+                    const emailBody = encodeURIComponent(`Hi Vortex FF Team,\n\nI need help with my order or profile.\n\nMy details are:\nUID: ${uid}\nName: ${nickname}\n\n`);
+                    document.getElementById('email-link').href = `mailto:resellerop65@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                };
+
+                async function loadProfile() {
+                    const docRef = doc(db, "profiles", guestId);
+                    try {
+                        const docSnap = await getDoc(docRef);
+                        let data = { nickname: '', uid: '', region: 'PK', favorite: 'FF Panel Pro', photoURL: '' };
+                        if (docSnap.exists()) {
+                            data = { ...data, ...docSnap.data() };
+                            nicknameEl.value = data.nickname;
+                            uidEl.value = data.uid;
+                            regionEl.value = data.region;
+                            favoriteEl.value = data.favorite;
+                             // FIX: Use placeholder if photoURL is missing/broken.
+                            avatarPreview.src = data.photoURL || 'assets/avatar.png';
+                        }
+                        updateDynamicContent(data);
+                    } catch (error) {
+                        console.error("Error loading profile:", error);
+                        updateDynamicContent({});
+                    }
+                }
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    spinner.style.display = 'inline-block';
+                    saveBtn.disabled = true;
+
+                    let photoURL = avatarPreview.src;
+                    if (photoURL.startsWith('blob:')) {
+                       photoURL = ''; // Will be replaced by upload URL
+                    } else if (photoURL.includes('placeholder.com')) {
+                       photoURL = ''; // Don't save placeholder URLs
+                    }
+
+                    const file = avatarUpload.files[0];
+
+                    if (file) {
+                        try {
+                            const avatarRef = storageRef(storage, `avatars/${guestId}/${file.name}`);
+                            await uploadBytes(avatarRef, file);
+                            photoURL = await getDownloadURL(avatarRef);
+                        } catch (error) { console.error("Error uploading avatar:", error); }
+                    }
+                    
+                    const profileData = {
+                        nickname: nicknameEl.value.trim(),
+                        uid: uidEl.value.trim(),
+                        region: regionEl.value,
+                        favorite: favoriteEl.value,
+                        photoURL: photoURL
+                    };
+
+                    try {
+                        await setDoc(doc(db, "profiles", guestId), profileData, { merge: true });
+                        updateDynamicContent(profileData);
+                        alert('Profile saved successfully!');
+                    } catch (error) {
+                        console.error("Error saving profile:", error);
+                        alert('Failed to save profile. Please try again.');
+                    } finally {
+                        spinner.style.display = 'none';
+                        saveBtn.disabled = false;
+                    }
+                });
+
+                avatarUpload.addEventListener('change', () => {
+                    if (avatarUpload.files && avatarUpload.files[0]) {
+                        avatarPreview.src = URL.createObjectURL(avatarUpload.files[0]);
+                    }
+                });
+
+                loadProfile();
+            }
+
+            // FIX: Register an external service worker file.
+            if ('serviceWorker' in navigator) {
+                // Ensure you are running this on a server (http://localhost) not from file://
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered successfully:', reg))
+                    .catch(err => console.error('Service Worker registration failed:', err));
+            }
+        });
+    </script>
+</body>
+</html>
